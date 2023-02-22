@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"main/Model"
+	"os"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -22,7 +23,7 @@ var DB *gorm.DB
 
 func ConnectDB() {
 	var err error
-	dsn := "host=tiny.db.elephantsql.com user=iwdokbkl password=vYpJpjtx8XMrkWikZ26KfJVD7lBNXEQO dbname=iwdokbkl port=5432 sslmode=disable"
+	dsn := os.Getenv("DB_URL")
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
